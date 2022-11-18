@@ -1,0 +1,47 @@
+body {
+    background: rgb(122, 247, 132) !important;
+}
+
+header {
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(59, 59, 59);
+}
+
+section {
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    /* padding: 100px; */
+    width: 80%;
+    /* margin: auto; */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.431);
+    /* margin-bottom: 10px; */
+}
+
+section a {
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+}
+
+.wallets-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.circle-check {
+    background-color: rgb(122, 247, 132);
+    border-radius: 10px;
+    width: 60px;
+    padding: 1px;
+}
+
+.circle-xmark {
+    background-color: rgb(247, 122, 122);
+    border-radius: 10px;
+    width: 80px;
+    padding: 1px;
+}

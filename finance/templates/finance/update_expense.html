@@ -1,0 +1,51 @@
+{% extends 'finance_base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Update expense
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2>Alterar despesa</h2>
+        <p>
+            Preencha o formulário.
+        </p>
+        <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Nome</label>
+                {% render_field update_expense_form.name class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputWallet" class="form-label">Carterira</label>
+                {% render_field update_expense_form.wallet class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputCategory" class="form-label">Categoria</label>
+                {% render_field update_expense_form.category class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputDescription" class="form-label">Descrição</label>
+                {% render_field update_expense_form.description class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputAmount" class="form-label">Valor</label>
+                {% render_field update_expense_form.amount class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputProof" class="form-label">Comprovante</label>
+                {% render_field update_expense_form.proof class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputDateAndHour" class="form-label">Data e hora</label>
+                {% render_field update_expense_form.date_and_hour type='datetime-local' class='form-control' %}
+            </div>
+            <div class="mb-3">
+                <label for="inputStatus" class="form-label">Status</label>
+                {% render_field update_expense_form.status class='form-control' %}
+            </div>
+            <input class="btn btn-success" type="submit" value="Enviar">
+        </form>
+    </div>
+{% endblock content %}

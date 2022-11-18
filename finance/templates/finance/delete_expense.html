@@ -1,0 +1,21 @@
+{% extends 'finance_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Delete expense
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2>Deletar despesa</h2>
+        <p>
+            Deseja deletar {{ expense.name }}?
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <a href="{% url 'expenses_list' %}" class="btn btn-secondary">Cancelar</a>
+            <input class="btn btn-danger" type="submit" value="Deletar">
+        </form>
+    </div>
+{% endblock content %}

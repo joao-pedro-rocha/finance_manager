@@ -1,0 +1,36 @@
+{% extends 'finance_base.html' %}
+
+{% block title %}
+    Todas as carteiras
+{% endblock title %}
+
+{% block content %}
+    <h2 class="mb-5 mt-5">Todas as carteiras</h2>
+    <a href="{% url 'create_wallet' %}">
+        <i class="fa-solid fa-circle-plus fa-2xl mb-5"></i>
+        Criar carteira
+    </a>
+    <div class="wallets-container">
+        {% for wallet in wallets %}
+            <div class="card m-1" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ wallet.get_absolute_url }}">
+                        <h5 class="card-title">{{ wallet.name }}</h5>
+                    </a>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ wallet.date|date:'d/m/Y' }}</h6>
+                    <p class="card-text">R$ {{ wallet.ballance }}</p>
+                    <a href="{% url 'update_wallet' wallet.id %}">
+                        <p class="mb-1">
+                            Alterar carteira
+                        </p>
+                    </a>
+                    <a href="{% url 'delete_wallet' wallet.id %}">
+                        <p class="mb-1">
+                            Deletar carteira
+                        </p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

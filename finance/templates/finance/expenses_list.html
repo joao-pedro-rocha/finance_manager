@@ -1,0 +1,56 @@
+{% extends 'finance_base.html' %}
+
+{% block title %}
+    Home | Finance Manager
+{% endblock title %}
+
+{% block content %}
+    <h5 class="d-flex">
+        <a href="{% url 'categories_list' %}">
+            <i class="fa-solid fa-list-ul fa-2xl mb-5"></i>
+            Ver categorias
+        </a>
+    </h5>
+    <h2>Carteiras recentes</h2>
+    <a href="{% url 'create_wallet' %}">
+        <i class="fa-solid fa-circle-plus fa-2xl mb-5"></i>
+        Criar carteira
+    </a>
+    <div class="wallets-container">
+        {% for wallet in wallets %}
+            <div class="card m-1" style="width: 18rem;">
+                <div class="card-body">
+                    <a href="{{ wallet.get_absolute_url }}">
+                        <h5 class="card-title">{{ wallet.name }}</h5>
+                    </a>
+                    <small class="card-subtitle mb-2 text-muted">{{ wallet.date|date:'d/m/Y' }}</small>
+                    <p class="card-text">R$ {{ wallet.ballance }}</p>
+                    <a href="{% url 'update_wallet' wallet.id %}">
+                        <p class="mb-1">
+                            Alterar carteira
+                        </p>
+                    </a>
+                    <a href="{% url 'delete_wallet' wallet.id %}">
+                        <p class="mb-1">
+                            Deletar carteira
+                        </p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="mt-3">
+        <a href="{% url 'wallets_list' %}">
+            <i class="fa-solid fa-wallet fa-2xl mr-2"></i>
+            Ver todas as carteiras
+        </a>
+    </p>
+    <div class="list-group">
+        <h2 class="mt-5">Despesas recentes</h2>
+        <a href="{% url 'create_expense' %}">
+            <i class="fa-solid fa-circle-plus fa-2xl mb-5"></i>
+            Criar despesa
+        </a>
+        {% include 'finance/_expenses.html' %}   
+    </div>
+{% endblock content %}

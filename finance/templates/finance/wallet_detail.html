@@ -1,0 +1,25 @@
+{% extends 'finance_base.html' %}
+
+{% block title %}
+    Carteira | {{ wallet.name }}
+{% endblock title %}
+
+{% block content %}
+    {% comment %} <h2>{{ wallet.name }}</h2> {% endcomment %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ wallet.name }}</h5>
+            <p class="card-text">Valor inicial: R$ {{ wallet.ballance }}</p>
+            <p class="card-text">Valor atual: R$ {{ current_ballance}}</p>
+            {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+        </div>
+    </div>
+    <div class="list-group">
+        <h3 class="mb-5 mt-5">Despesas</h3>
+        <a href="{% url 'create_expense' %}">
+            <i class="fa-solid fa-circle-plus fa-2xl mb-5"></i>
+            Criar despesa
+        </a>
+        {% include 'finance/_expenses.html' %}   
+    </div>
+{% endblock content %}
