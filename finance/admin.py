@@ -17,10 +17,10 @@ class ExpenseAdmin(admin.ModelAdmin):
         'category',
         'description',
         'amount',
-        'date_and_hour',
+        'date',
     )
 
-    list_filter = ('date_and_hour', 'category',)
+    list_filter = ('date', 'category',)
 
 admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Category, CategoryAdmin)

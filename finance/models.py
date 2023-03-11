@@ -51,15 +51,12 @@ class Expense(models.Model):
                                on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name='Categoria',
                                  on_delete=models.PROTECT)
-    description = models.TextField(verbose_name='Descrição')
+    description = models.TextField(verbose_name='Descrição', blank=True)
     amount = models.DecimalField(verbose_name='Valor', max_digits=6, 
                                  decimal_places=2)
     proof = models.ImageField(verbose_name='Comprovante', upload_to='uploads/',
                               blank=True)
-    date_and_hour = models.DateTimeField(
-        verbose_name='Data e hora',
-        help_text='Use o seguinte formato: 15/06/2022 15:45'
-    )
+    date = models.DateField(verbose_name='Data', null=True)
     status = models.CharField(verbose_name='Status', max_length=7,
                               choices=STATUS_CHOICES, null=True)
     

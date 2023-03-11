@@ -12,7 +12,7 @@ class ExpenseForm(forms.ModelForm):
             'description',
             'amount',
             'proof',
-            'date_and_hour',
+            'date',
             'status',
         ]
 

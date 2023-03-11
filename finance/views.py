@@ -5,7 +5,7 @@ from .forms import CategoryForm, ExpenseForm, WalletForm
 
 # Create your views here.
 def expenses_list(request):
-    expenses = Expense.objects.all().order_by('-date_and_hour')[:10]
+    expenses = Expense.objects.all().order_by('-date')[:10]
     wallets = Wallet.objects.all().order_by('-date', '-hour')[:4]
 
     return render(request, 'finance/expenses_list.html', locals())
@@ -96,7 +96,7 @@ def delete_wallet(request, id):
 
 def wallet_detail(request, slug):
     wallet = Wallet.objects.get(slug=slug)
-    expenses = Expense.objects.filter(wallet=wallet).order_by('-date_and_hour')
+    expenses = Expense.objects.filter(wallet=wallet).order_by('-date')
     expenses_sum = 0
 
     for expense in expenses:

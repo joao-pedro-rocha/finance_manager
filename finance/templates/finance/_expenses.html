@@ -13,7 +13,7 @@
         {% endif %}
         <div class="d-flex w-100 justify-content-between ">
             <h5 class="mb-1">{{ expense.name }}</h5>
-            <small class="text-muted">{{ expense.date_and_hour|date:'d/m/Y' }} - {{ expense.date_and_hour|time:'h:i a' }}</small>
+            <small class="text-muted">{{ expense.date|date:'d/m/Y' }}</small>
         </div>
         <p class="mb-1">Carteira: {{ expense.wallet }}</p>
         <p class="mb-1">R$ {{ expense.amount }}</p>
