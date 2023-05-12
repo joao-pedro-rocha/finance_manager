@@ -24,6 +24,11 @@
                 Alterar despesa
             </p>
         </a>
+        <a href="{% url 'duplicate-expense' expense.name expense.wallet.id expense.category.id expense.amount expense.date expense.status %}?next={{ request.build_absolute_uri }}">
+            <p class="mb-1">
+                Duplicar despesa
+            </p>
+        </a>
         <a href="{% url 'delete_expense' expense.id %}">
             <p class="mb-1">
                 Deletar despesa

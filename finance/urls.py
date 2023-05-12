@@ -3,7 +3,7 @@ from django.urls import path
 from .views import expenses_list, wallet_detail, create_expense, \
     update_expense, delete_expense, create_wallet, update_wallet, \
     delete_wallet, wallets_list, categories_list, create_category, \
-    update_category, delete_category
+    update_category, delete_category, duplicate_expense
 
 urlpatterns = [
     path('', expenses_list, name='expenses_list'),
@@ -19,4 +19,8 @@ urlpatterns = [
     path('create-category/', create_category, name='create_category'),
     path('update-category/<id>/', update_category, name='update_category'),
     path('delete-category/<id>/', delete_category, name='delete_category'),
+    path(
+        'duplicate-expense/name/<str:expense_name>/wallet/<int:expense_wallet>/category/<int:expense_category>/amount/<str:expense_amount>/date/<str:expense_date>/status/<str:expense_status>/',
+        duplicate_expense, name='duplicate-expense'
+    )
 ]

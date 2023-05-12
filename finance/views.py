@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import redirect, render, get_object_or_404,\
+    HttpResponseRedirect
 
 from .models import Expense, Wallet, Category
 from .forms import CategoryForm, ExpenseForm, WalletForm
 
-# Create your views here.
+
 def expenses_list(request):
     expenses = Expense.objects.all().order_by('-date')[:10]
     wallets = Wallet.objects.all().order_by('-date', '-hour')[:4]
@@ -22,7 +23,6 @@ def create_expense(request):
     else:
         expense_form = ExpenseForm()
 
-
     return render(request, 'finance/create_expense.html', locals())
 
 
@@ -31,7 +31,7 @@ def update_expense(request, id):
         expense = get_object_or_404(Expense, id=id)
         update_expense_form = ExpenseForm(request.POST, request.FILES,
                                           instance=expense)
-        
+
         if update_expense_form.is_valid():
             update_expense_form.save()
 
@@ -45,7 +45,7 @@ def update_expense(request, id):
 
 def delete_expense(request, id):
     expense = get_object_or_404(Expense, id=id)
-    
+
     if request.method == 'POST':
         expense.delete()
 
@@ -58,7 +58,7 @@ def wallets_list(request):
     wallets = Wallet.objects.all().order_by('-date', '-hour')
 
     return render(request, 'finance/wallets_list.html', locals())
-    
+
 
 def create_wallet(request):
     wallet_form = WalletForm(request.POST or None)
@@ -97,11 +97,7 @@ def delete_wallet(request, id):
 def wallet_detail(request, slug):
     wallet = Wallet.objects.get(slug=slug)
     expenses = Expense.objects.filter(wallet=wallet).order_by('-date')
-    expenses_sum = 0
-
-    for expense in expenses:
-        expenses_sum += expense.amount
-
+    expenses_sum = sum(expense.amount for expense in expenses)
     current_ballance = wallet.ballance - expenses_sum
 
     return render(request, 'finance/wallet_detail.html', locals())
@@ -146,3 +142,16 @@ def delete_category(request, id):
         return HttpResponseRedirect('/categories-list/')
 
     return render(request, 'finance/delete_category.html', locals())
+
+
+def duplicate_expense(request, expense_name, expense_wallet, expense_category,
+                      expense_amount, expense_date, expense_status):
+    wallet = Wallet.objects.get(id=expense_wallet)
+    category = Category.objects.get(id=expense_category)
+
+    Expense.objects.create(name=f'{expense_name} copy', wallet=wallet,
+                           category=category, amount=expense_amount,
+                           date=expense_date, status=expense_status)
+
+    if 'next' in request.GET:
+        return redirect(request.GET['next'])
