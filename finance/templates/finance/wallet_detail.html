@@ -5,13 +5,11 @@
 {% endblock title %}
 
 {% block content %}
-    {% comment %} <h2>{{ wallet.name }}</h2> {% endcomment %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">{{ wallet.name }}</h5>
             <p class="card-text">Valor inicial: R$ {{ wallet.ballance }}</p>
             <p class="card-text">Valor atual: R$ {{ current_ballance}}</p>
-            {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
         </div>
     </div>
     <div class="list-group">
