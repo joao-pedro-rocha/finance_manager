@@ -1,11 +1,14 @@
 from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+from users.models import User
 
 
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(verbose_name='Nome', max_length=50)
+    user = models.ForeignKey(User, verbose_name='Usuário',
+                             on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Categoria'
@@ -17,10 +20,12 @@ class Category(models.Model):
 
 class Wallet(models.Model):
     name = models.CharField(verbose_name='Nome', max_length=50)
+    user = models.ForeignKey(User, verbose_name='Usuário',
+                             on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=True, unique=True)
     date = models.DateField(verbose_name='Data', null=True)
     hour = models.TimeField(verbose_name='Hora', auto_now_add=True, null=True)
-    ballance = models.DecimalField(verbose_name='Saldo', max_digits=6, 
+    ballance = models.DecimalField(verbose_name='Saldo', max_digits=6,
                                    decimal_places=2)
 
     class Meta:
