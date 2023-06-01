@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 # Register your models here.
 User = get_user_model()
 
+
 class CustomUserAdmin(UserAdmin):
     model = User
     list_display = ('email', 'is_staff', 'is_active')
@@ -13,7 +14,9 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             'fields': ('email', 'password', )
         }),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Permissions', {'fields': ('is_superuser', 'is_staff', 'is_active',
+                                    'groups', 'user_permissions')}),
     )
 
     add_fieldsets = (
@@ -26,5 +29,6 @@ class CustomUserAdmin(UserAdmin):
 
     search_fields = ('email',)
     ordering = ('email',)
+
 
 admin.site.register(User, CustomUserAdmin)
