@@ -1,9 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.shortcuts import redirect, render
-from django.views.generic.edit import CreateView
 from .forms import CustomUserCreationForm
-from django.urls import reverse_lazy
 
 
 class UserLogin(LoginView):
