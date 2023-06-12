@@ -34,14 +34,17 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-                <label for="inputName" class="form-label">Email</label>
+                <label for="id_username" class="form-label">Email</label>
                 {% render_field form.username class='form-control' %}
             </div>
             <div class="mb-3">
-                <label for="inputName" class="form-label">Senha</label>
+                <label for="id_password" class="form-label">Senha</label>
                 {% render_field form.password class='form-control' %}
             </div>
             <br>
+            <div class="mb-3">
+                <a href="{% url 'custom-password-reset' %}" class="card-link">Esqueci minha senha</a>
+            </div>
             <input class="btn btn-success" type="submit" value="Entrar">
             </form>
         </div>
