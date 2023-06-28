@@ -85,13 +85,17 @@ def create_wallet(request):
 
 @login_required
 def update_wallet(request, id):
-    wallet = get_object_or_404(Wallet, id=id, user=request.user)
-    update_wallet_form = WalletForm(request.POST or None, instance=wallet)
+    if request.method == 'POST':
+        wallet = get_object_or_404(Wallet, id=id, user=request.user)
+        update_wallet_form = WalletForm(request.POST or None, instance=wallet)
 
-    if update_wallet_form.is_valid():
-        update_wallet_form.save()
+        if update_wallet_form.is_valid():
+            update_wallet_form.save()
 
-        return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/')
+    else:
+        wallet = get_object_or_404(Wallet, id=id, user=request.user)
+        update_wallet_form = WalletForm(instance=wallet)
 
     return render(request, 'finance/update_wallet.html', locals())
 

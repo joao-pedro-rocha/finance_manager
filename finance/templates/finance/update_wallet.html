@@ -1,5 +1,6 @@
 {% extends 'finance_base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}
     Update wallet
@@ -9,7 +10,7 @@
     <div class="container">
         <h2>Alterar carteira</h2>
         <p>
-            Preencha o formulário.
+            Preencha o formulário
         </p>
         <form method="post">
             {% csrf_token %}
@@ -29,3 +30,11 @@
         </form>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+        let date_element = document.querySelector("#id_date");
+
+        console.log(date_element.setAttribute("value", "{{ wallet.date|date:"Y-m-d" }}"));
+    </script>
+{% endblock scripts %}

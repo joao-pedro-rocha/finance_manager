@@ -49,3 +49,11 @@
         </form>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+        let date_element = document.querySelector("#id_date");
+
+        console.log(date_element.setAttribute("value", "{{ expense.date|date:"Y-m-d" }}"));
+    </script>
+{% endblock scripts %}
