@@ -25,25 +25,39 @@
     <body>
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'expenses_list' %}"><i class="fa-solid fa-sack-dollar"></i>Controle Financeiro Simples</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="{% url 'expenses_list' %}"><i class="fa-solid fa-sack-dollar mx-2"></i>Controle Financeiro Simples</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'expenses_list' %}">Home</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'expenses_list' %}" id="home-button">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'categories_list' %}">Categorias</a>
+                            <a class="nav-link" href="{% url 'categories_list' %}" id="category-button">Categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'wallets_list' %}">Carteiras</a>
+                            <a class="nav-link" href="{% url 'wallets_list' %}" id="wallets-button">Carteiras</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Conta
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">Perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+                                {% comment %} <li><hr class="dropdown-divider"></li> {% endcomment %}
+                            </ul>
                         </li>
+                        {% comment %} <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                        </li> {% endcomment %}
                     </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success disabled" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -57,6 +71,8 @@
         <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-        {% block scripts %}{% endblock scripts %}
+        {% block scripts %}
+            <script src="{% static 'js/navbar_active_button.js' %}"></script>
+        {% endblock scripts %}
     </body>
 </html>

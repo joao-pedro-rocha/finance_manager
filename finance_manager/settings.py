@@ -236,7 +236,7 @@ JAZZMIN_UI_TWEAKS = {
     },
 }
 
-LOGIN_URL = 'user/login'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'expenses_list'
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
